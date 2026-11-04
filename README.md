@@ -19,10 +19,10 @@ Developers can also `git clone` this repository into `/site/modules/Hazelchat`, 
 
 ## What it does
 
-- The page each visitor requests gets one tag just before its last `</body>`:
+- The page each visitor requests gets one tag just before its closing body tag:
   `<script src="https://app.hazelchat.co/widget.js" id="hazelchat-processwire" defer data-agent="<key>"></script>`
 - The installation code may be the pasted code or just its 64-character key. Only a valid key is saved; anything else, such as an API key, is refused in one sentence. The script address is fixed in the code and cannot be changed in the settings.
-- The admin, AJAX requests, FormBuilder's form frame, templates whose content type is not HTML, pages rendered inside other templates and output without `</body>` stay as they are.
+- The admin, AJAX requests, FormBuilder's form frame, templates whose content type is not HTML, pages rendered inside other templates and output without a closing body tag stay as they are.
 - **Wait for my consent manager** (off) adds `data-require-consent="true"`: the chat starts only once your consent manager allows it. See [Visitor consent](https://hazelchat.co/integrations/processwire/#consent).
 - The tag is the same for every visitor, so full-page caches such as ProCache can keep it.
 
