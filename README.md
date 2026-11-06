@@ -23,7 +23,7 @@ Developers can also `git clone` this repository into `/site/modules/Hazelchat`, 
   `<script src="https://app.hazelchat.co/widget.js" id="hazelchat-processwire" defer data-agent="<key>"></script>`
 - The installation code may be the pasted code or just its 64-character key. Only a valid key is saved; anything else, such as an API key, is refused in one sentence. The script address is fixed in the code and cannot be changed in the settings.
 - The admin, AJAX requests, FormBuilder's form frame, templates whose content type is not HTML, pages rendered inside other templates and output without a closing body tag stay as they are.
-- **Wait for my consent manager** (off) adds `data-require-consent="true"`: the chat starts only once your consent manager allows it. See [Visitor consent](https://hazelchat.co/integrations/processwire/#consent).
+- **Wait for my consent manager** (off) adds `data-require-consent="true"`: the chat starts only once your consent manager allows it. The script file itself still loads straight away, except with PrivacyWire; see [Data and third parties](#data-and-third-parties) and [Visitor consent](https://hazelchat.co/integrations/processwire/#consent).
 - The tag is the same for every visitor, so full-page caches such as ProCache can keep it.
 
 ### With PrivacyWire
@@ -37,6 +37,8 @@ Without PrivacyWire, the chat's script loads with the page and then waits, stori
 ## Data and third parties
 
 - Visitors' browsers load the chat from `app.hazelchat.co` (Hazelchat, Germany). Hazelchat processes the questions they type and, if they leave an enquiry, their name, email address and message ([privacy notice](https://hazelchat.co/privacy/), [terms](https://hazelchat.co/terms/)).
+- With **Wait for my consent manager** on and without PrivacyWire, only the chat waits: browsers still download `widget.js` from `app.hazelchat.co` straight away, so the visitor's IP address reaches Hazelchat before they agree. This is by design. If your site must prevent that too, use PrivacyWire (above), which loads nothing until the visitor allows it, or a consent tool that can block the script itself.
+- The script tag carries the id `hazelchat-processwire`. When Hazelchat checks your website, it reads this id to record that the chat was installed with this module, and it counts the module's installations that way.
 - The chat sets no cookies. It keeps a reference to the conversation in session storage until the tab is closed (details on the [cookie banner page](https://hazelchat.co/integrations/cookie-banners/)).
 - The module itself makes no requests from ProcessWire, adds no tables, fields, templates or pages, and stores only the key and the switch in its module settings.
 
@@ -46,7 +48,7 @@ Empty **Installation code** and click **Submit**, or uninstall the module under 
 
 ## Deutsch
 
-Hazelchat fügt Ihren KI-Chat-Agenten mit einem einzigen Installationscode in jede Seite Ihrer ProcessWire-Site ein. Kopieren Sie den Ordner `Hazelchat` nach `/site/modules/`, klicken Sie unter **Modules** auf **Refresh** und dann bei Hazelchat auf **Install**, fügen Sie den Code aus Hazelchat ein und klicken Sie auf **Submit**. Die Browser Ihrer Besucher laden den Chat von `app.hazelchat.co`; deren Fragen und Anfragedaten verarbeitet Hazelchat. Sie brauchen ein Hazelchat-Konto; der Free-Tarif gilt für eine Website und bleibt kostenlos. [Anleitung auf Deutsch](https://hazelchat.co/de/integrations/processwire/)
+Hazelchat fügt Ihren KI-Chat-Agenten mit einem einzigen Installationscode in jede Seite Ihrer ProcessWire-Site ein. Kopieren Sie den Ordner `Hazelchat` nach `/site/modules/`, klicken Sie unter **Modules** auf **Refresh** und dann bei Hazelchat auf **Install**, fügen Sie den Code aus Hazelchat ein und klicken Sie auf **Submit**. Die Browser Ihrer Besucher laden den Chat von `app.hazelchat.co`; deren Fragen und Anfragedaten verarbeitet Hazelchat. Wartet der Chat auf Ihren Consent-Manager, lädt der Browser `widget.js` trotzdem sofort, und die IP-Adresse des Besuchers erreicht Hazelchat schon vor der Einwilligung; nur der Chat wartet. Mit PrivacyWire lädt vor der Zustimmung nichts. Über die ID `hazelchat-processwire` im Skript-Tag zählt Hazelchat die Installationen dieses Moduls. Sie brauchen ein Hazelchat-Konto; der Free-Tarif gilt für eine Website und bleibt kostenlos. [Anleitung auf Deutsch](https://hazelchat.co/de/integrations/processwire/)
 
 ## Licence
 
